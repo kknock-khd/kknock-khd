@@ -13,7 +13,6 @@
 		$hit = $hit['hit'] + 1;
 		$fet = query("update board set hit = '".$hit."' where id = '".$bno."'");
 		$sql = query("select * from board where id='".$bno."'"); /* 받아온 id값을 선택 */
-		$res_view['writer'] = query("select writer from board where id = '".$bno."'")
 		$board = $sql->fetch_array();
 	?>
 <!-- 글 불러오기 -->
@@ -25,18 +24,20 @@
 			</div>
 			<div id="bo_content">
 				<?php echo nl2br("$board[content]"); ?>
+				<p class=file><a href="../file/upload/<?=$board['file'];?>"download><?=$board['file'];?></a></p>
 			</div>
 	<!-- 목록, 수정, 삭제 -->
 	<div id="bo_ser">
 		<ul>
 			<li><a href="board.php">[목록으로]</a></li>
-			<?php
-    if($_SESSION['user_id'] == $res_view['writer']){ ?>
+        		<?php
+    if($_SESSION['user_id'] == $board['writer']){ ?>
         <div class=mine>
         	<button class=write onclick="window.location.href='update.php?id=<?=$res_view['id']?>'" type="button">수정</button>
         	<button class=write onclick="window.location.href='remove_ok.php?id=<?=$res_view['id']?>'" type="button">삭제</button>
         </div>
 <?php } ?>
+        </div>
 		</ul>
 	</div>
 </div>
