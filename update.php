@@ -15,6 +15,7 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판</title>
+<html lang="en">
 </head>
 <body>
     <div id="board_write">
